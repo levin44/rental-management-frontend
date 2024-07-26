@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 interface Customer {
-  id?: number;
+  id?: number|undefined;
   name: string | undefined;
   city: string | undefined;
   contact: string | undefined;
@@ -52,5 +52,15 @@ export class CustomerComponent {
         console.log(this.customers);
       })
       .catch(error => console.error('Error fetching customers:', error));
+  }
+
+  deleteCustomer(id: any) {
+    fetch(`http://localhost:8080/customer/${id}`, {
+      method: 'DELETE'
+    })
+    .then(() => {
+      this.getAllCustomers();  
+    })
+    .catch(error => console.error('Error deleting customer:', error));
   }
 }

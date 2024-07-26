@@ -47,7 +47,7 @@
                 <td>{{customer.name}}</td>
                 <td>{{customer.city}}</td>
                 <td>{{customer.contact}}</td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                <td><button type="button" class="btn btn-danger" (click)="deleteCustomer(customer.id)">Delete</button></td>
             </tr>
         </tbody>
     </table>
