@@ -6,33 +6,33 @@
 
         <div class="mb-3">
             <label for="name" class="form-label">Item Name</label>
-            <input type="text" class="form-control" id="name">
+            <input type="text" class="form-control" id="name" [(ngModel)]="item.name" [ngModelOptions]="{standalone: true}">
         </div>
 
         <div class="mb-3">
             <label for="rentalPerDay" class="form-label">Rental Per Day</label>
-            <input type="text" class="form-control" id="rentalPerDay">
+            <input type="text" class="form-control" id="rentalPerDay" [(ngModel)]="item.rental_per_day" [ngModelOptions]="{standalone: true}">
         </div>
 
         <div class="mb-3">
             <label for="finePerDay" class="form-label">Fine Per Day</label>
-            <input type="text" class="form-control" id="finePerDay">
+            <input type="text" class="form-control" id="finePerDay" [(ngModel)]="item.fine_per_day" [ngModelOptions]="{standalone: true}">
         </div>
 
         <div class="mb-3">
             <label for="status" class="form-label">Availability</label>
-            <select name="avalability" class="form-select" id="">
+            <select name="avalability" class="form-select" id="" [(ngModel)]="item.availability" [ngModelOptions]="{standalone: true}">
                 <option value="1">Available</option>
                 <option value="0">Unavailable</option>
             </select>
         </div>
 
-        <button class="btn btn-primary">Add Item</button>
+        <button (click)="saveItem()" class="btn btn-primary">Add Item</button>
     </form>
     <hr class="my-4">
     <h3 class="mb-3">Item List</h3>
 
-    <!-- search customer -->
+    <!-- search item -->
     <form>
 
         <div class="row">
@@ -46,7 +46,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">#</th>
+
                 <th scope="col">Item Name</th>
                 <th scope="col">Rental Per Day</th>
                 <th scope="col">Fine Per Day</th>
@@ -55,22 +55,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>mdo</td>
-                <td>mdo</td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
+            <tr *ngFor="let item of items">
+                <td>{{item.name}}</td>
+                <td>{{item.rental_per_day}}</td>
+                <td>{{item.fine_per_day}}</td>
+                <td>{{item.availability}}</td>
+                <td><button type="button" class="btn btn-danger"(click)="deleteItem(item.id)" >Delete</button></td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>fat</td>
-                <td>fat</td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
-            </tr>
+
         </tbody>
     </table>
 
